@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
     return { ok: false, errors: result.errors }
   }
 
-  const ip = getRequestIP(event, { xForwardedFor: true }) ?? 'unknown'
+  const ip = getRequestHeader(event, 'cf-connecting-ip') ?? getRequestIP(event, { xForwardedFor: true }) ?? 'unknown'
   if (!limiter.hit(ip)) {
     setResponseStatus(event, 429)
     return { ok: false, error: 'rate_limited' }
