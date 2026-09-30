@@ -1,0 +1,72 @@
+<template>
+  <section id="party" class="mx-auto max-w-5xl scroll-mt-28 px-4 pt-10">
+    <div class="panel grid gap-6 p-6 md:grid-cols-[auto_1fr] md:items-center md:p-8">
+      <button type="button" class="portrait" :class="egg" @click="poke" @animationend="egg = ''">
+        <img :src="profile.avatar" alt="Poke Abdo's Mii: red glasses and a teal hoodie" width="180" height="180" fetchpriority="high">
+      </button>
+      <div>
+        <p class="panel-title">Party member</p>
+        <h1 class="mt-1 text-3xl font-black leading-tight md:text-5xl">{{ profile.name }}</h1>
+        <dl class="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-lg">
+          <dt class="pixel text-[var(--c-muted)]">CLASS</dt>
+          <dd>{{ profile.role }}</dd>
+          <dt class="pixel text-[var(--c-muted)]">LV</dt>
+          <dd>{{ profile.level }} years</dd>
+          <dt class="pixel text-[var(--c-muted)]">HOME</dt>
+          <dd>{{ profile.home.name }} · <HomeClock /> local time<template v-if="night">, after dark</template></dd>
+          <dt class="pixel text-[var(--c-muted)]">LANG</dt>
+          <dd>{{ languages }}</dd>
+          <dt class="pixel text-[var(--c-muted)]">LIKES</dt>
+          <dd>{{ likes }}</dd>
+        </dl>
+      </div>
+    </div>
+    <DialogueBox class="mt-5" :text="line" @next="line = intro" />
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a :href="profile.cvHref" class="btn" download>Download CV</a>
+      <NuxtLink to="/contact" class="btn btn-teal">Write me a letter</NuxtLink>
+      <a :href="profile.linkedin" class="btn" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </section>
+</template>
+
+<script setup lang="ts">
+  import { useEventListener } from '@vueuse/core'
+  import { profile, intro, languages, likes } from '~/data/site'
+
+  const line = ref(intro)
+  const night = ref(false)
+  const { data: sun } = await useHomeSun()
+  const egg = ref('')
+  const pokes = ref(0)
+  const konami = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a']
+  let progress = 0
+
+  function play(anim: string, text: string) {
+    egg.value = ''
+    requestAnimationFrame(() => { egg.value = anim })
+    line.value = text
+  }
+
+  function poke() {
+    pokes.value++
+    if (pokes.value % 5 === 0) play('egg-wiggle', 'Hey, that tickles! Five pokes? You must really like clicking things.')
+  }
+
+  function onKey(e: KeyboardEvent) {
+    if (e.key.length > 1 && !e.key.startsWith('Arrow')) return
+    const target = e.target as HTMLElement | null
+    if (target && ['INPUT', 'TEXTAREA'].includes(target.tagName)) return
+    if (e.key.toLowerCase() === konami[progress]?.toLowerCase()) progress++
+    else progress = e.key === 'ArrowUp' ? Math.min(progress, 2) || 1 : 0
+    if (progress === konami.length) {
+      progress = 0
+      play('egg-jump', 'Up, up, down, down, left, right, left, right, B, A! Secret unlocked: +30 lives. Please use them wisely.')
+    }
+  }
+
+  onMounted(() => {
+    night.value = !!sun.value && isAfterDark(sun.value)
+  })
+  useEventListener('keydown', onKey)
+</script>
