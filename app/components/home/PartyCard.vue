@@ -41,7 +41,11 @@
 
   const line = ref(intro)
   const night = ref(false)
-  const greeting = computed(() => (night.value ? `${intro} It's late here, so I'm probably deep in a JRPG right now.` : intro))
+  const hello = ref('Hi!')
+  const greeting = computed(() => {
+    const text = intro.replace(/^Hi!/, hello.value)
+    return night.value ? `${text} It's late here, so I'm probably deep in a JRPG right now.` : text
+  })
   const { data: sun } = await useHomeSun()
   const egg = ref('')
   const pokes = ref(0)
@@ -133,6 +137,11 @@
 
   onMounted(() => {
     night.value = !!sun.value && isAfterDark(sun.value)
+    const hour = Number(new Intl.DateTimeFormat('en-GB', { timeZone: profile.home.timeZone, hour: '2-digit', hourCycle: 'h23' }).format(new Date()))
+    if (night.value && hour < 12) hello.value = 'Hi, night owl!'
+    else if (hour < 12) hello.value = 'Good morning!'
+    else if (hour < 17 && !night.value) hello.value = 'Good afternoon!'
+    else hello.value = 'Good evening!'
     line.value = greeting.value
   })
   useEventListener('keydown', onKey)
