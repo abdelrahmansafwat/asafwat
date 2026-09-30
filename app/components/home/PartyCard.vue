@@ -46,7 +46,7 @@
   const emotes: Record<string, [string, string]> = {
     '/wave': ['egg-wiggle', 'Abdo waves at you.'],
     '/dance': ['egg-dance', 'Abdo dances gleefully.'],
-    '/bow': ['egg-bow', 'Abdo bows courteously to you.'],
+    '/cheer': ['egg-jump', 'Abdo cheers you on!'],
   }
   const { start: stopEvolving } = useTimeoutFn(() => { line.value = '...Huh? Abdo stopped evolving!' }, 2200, { immediate: false })
 

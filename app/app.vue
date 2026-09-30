@@ -19,7 +19,7 @@
       {
         tagPosition: 'head',
         innerHTML: () =>
-          `(function(){try{var s=${JSON.stringify(sun.value)};var t=localStorage.getItem('theme');var now=new Date().toISOString().slice(11,16);var dark=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches||(s&&(now<s.sunrise||now>=s.sunset));if(dark){document.documentElement.classList.add('dark')}}catch(e){}})();`,
+          `(function(){document.documentElement.classList.add('js');try{var s=${JSON.stringify(sun.value)};var t=localStorage.getItem('theme');var now=new Date().toISOString().slice(11,16);var dark=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches||(s&&(now<s.sunrise||now>=s.sunset));if(dark){document.documentElement.classList.add('dark')}}catch(e){}})();`,
       },
       {
         type: 'application/ld+json',

@@ -1,7 +1,7 @@
 <template>
   <div class="dialogue" @click="onClick">
     <p class="sr-only" aria-live="polite">{{ text }}</p>
-    <p aria-hidden="true" class="min-h-[4.5em] text-lg leading-relaxed">{{ shown }}</p>
+    <p aria-hidden="true" class="dialogue-line min-h-[4.5em] text-lg leading-relaxed" :class="{ started }">{{ shown }}</p>
     <span class="dialogue-next" aria-hidden="true">▼</span>
   </div>
 </template>
@@ -12,6 +12,7 @@
   const props = defineProps<{ text: string }>()
   const emit = defineEmits<{ next: [] }>()
   const shown = ref(props.text)
+  const started = ref(false)
   const motion = usePreferredReducedMotion()
   let typed = 0
 
@@ -27,6 +28,7 @@
   }
 
   function type() {
+    started.value = true
     if (motion.value === 'reduce') return finish()
     typed = 0
     shown.value = ''
