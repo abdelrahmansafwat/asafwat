@@ -1,7 +1,7 @@
 <template>
   <section id="party" class="mx-auto max-w-5xl scroll-mt-28 px-4 pt-10">
     <div class="panel grid gap-6 p-6 md:grid-cols-[auto_1fr] md:items-center md:p-8">
-      <div class="relative justify-self-start">
+      <div class="relative justify-self-center md:justify-self-start">
         <button ref="portrait" type="button" class="portrait" :class="egg" @click="poke" @contextmenu.prevent @animationend="egg = ''">
           <img :src="profile.avatar" alt="Poke Abdo's Mii: red glasses and a teal hoodie" width="180" height="180" fetchpriority="high" draggable="false">
         </button>
@@ -10,8 +10,8 @@
         </div>
       </div>
       <div>
-        <p class="panel-title">Party member</p>
-        <h1 class="mt-1 text-3xl font-black leading-tight md:text-5xl">{{ profile.name }}</h1>
+        <p class="panel-title text-center md:text-left">Party member</p>
+        <h1 class="mt-1 text-center text-3xl font-black leading-tight md:text-left md:text-5xl">{{ profile.name }}</h1>
         <dl class="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-lg">
           <dt class="pixel text-[var(--c-muted)]">CLASS</dt>
           <dd>{{ profile.role }}</dd>
