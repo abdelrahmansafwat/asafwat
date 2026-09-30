@@ -3,7 +3,7 @@ import type { ContactInput } from './contact-schema'
 
 export async function sendContactMail(input: ContactInput): Promise<void> {
   const config = useRuntimeConfig()
-  const subject = `Calling card from ${input.name}`
+  const subject = `Letter from ${input.name}`
   const text = `${input.message}\n\nFrom: ${input.name} <${input.email}>`
 
   if (config.contactTransport === 'log') {

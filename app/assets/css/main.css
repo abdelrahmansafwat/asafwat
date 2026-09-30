@@ -267,7 +267,7 @@ body {
   outline: 3px solid var(--c-teal);
   transform: rotate(6deg);
 }
-.cc-input {
+.field-input {
   margin-top: 0.35rem;
   width: 100%;
   padding: 0.7rem 0.8rem;
@@ -277,10 +277,10 @@ body {
   border: 3px solid var(--c-border);
   border-radius: 10px;
 }
-.cc-input[aria-invalid="true"] { border-color: var(--c-red); }
-.cc-error { margin-top: 0.35rem; font-weight: 800; color: var(--c-red); }
-.dark .cc-error { color: #FF8A8F; }
-.cc-trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.field-input[aria-invalid="true"] { border-color: var(--c-red); }
+.field-error { margin-top: 0.35rem; font-weight: 800; color: var(--c-red); }
+.dark .field-error { color: #FF8A8F; }
+.honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
 .egg-jump { animation: egg-jump 0.6s ease-out 2; }
 @keyframes egg-jump { 40% { transform: translateY(-18px); } }

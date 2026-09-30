@@ -14,33 +14,33 @@
     <p class="letter-title">Dear Abdo,</p>
 
     <div>
-      <label for="cc-name" class="block font-bold">Your name</label>
-      <input id="cc-name" v-model="form.name" name="name" autocomplete="name" maxlength="80" class="cc-input" :aria-invalid="!!errors.name" aria-describedby="cc-name-err">
-      <p v-if="errors.name" id="cc-name-err" class="cc-error">{{ errors.name }}</p>
+      <label for="letter-name" class="block font-bold">Your name</label>
+      <input id="letter-name" v-model="form.name" name="name" autocomplete="name" maxlength="80" class="field-input" :aria-invalid="!!errors.name" aria-describedby="letter-name-err">
+      <p v-if="errors.name" id="letter-name-err" class="field-error">{{ errors.name }}</p>
     </div>
 
     <div>
-      <label for="cc-email" class="block font-bold">Your email</label>
-      <input id="cc-email" v-model="form.email" name="email" type="email" autocomplete="email" maxlength="254" class="cc-input" :aria-invalid="!!errors.email" aria-describedby="cc-email-err">
-      <p v-if="errors.email" id="cc-email-err" class="cc-error">{{ errors.email }}</p>
+      <label for="letter-email" class="block font-bold">Your email</label>
+      <input id="letter-email" v-model="form.email" name="email" type="email" autocomplete="email" maxlength="254" class="field-input" :aria-invalid="!!errors.email" aria-describedby="letter-email-err">
+      <p v-if="errors.email" id="letter-email-err" class="field-error">{{ errors.email }}</p>
     </div>
 
     <div>
-      <label for="cc-message" class="block font-bold">Your letter</label>
-      <textarea id="cc-message" v-model="form.message" name="message" rows="7" maxlength="2000" class="cc-input" :aria-invalid="!!errors.message" aria-describedby="cc-message-err" />
-      <p v-if="errors.message" id="cc-message-err" class="cc-error">{{ errors.message }}</p>
+      <label for="letter-message" class="block font-bold">Your letter</label>
+      <textarea id="letter-message" v-model="form.message" name="message" rows="7" maxlength="2000" class="field-input" :aria-invalid="!!errors.message" aria-describedby="letter-message-err" />
+      <p v-if="errors.message" id="letter-message-err" class="field-error">{{ errors.message }}</p>
     </div>
 
-    <div class="cc-trap" aria-hidden="true">
-      <label for="cc-website">Leave this empty</label>
-      <input id="cc-website" v-model="form.website" name="website" tabindex="-1" autocomplete="off">
+    <div class="honeypot" aria-hidden="true">
+      <label for="letter-website">Leave this empty</label>
+      <input id="letter-website" v-model="form.website" name="website" tabindex="-1" autocomplete="off">
     </div>
 
-    <p v-if="state === 'failed'" class="cc-error" role="alert">
+    <p v-if="state === 'failed'" class="field-error" role="alert">
       The letter got lost in the mail. Please try again in a bit, or reach me on
       <a :href="pub.linkedinUrl" class="underline" target="_blank" rel="noopener">LinkedIn</a>.
     </p>
-    <p v-if="state === 'limited'" class="cc-error" role="alert">
+    <p v-if="state === 'limited'" class="field-error" role="alert">
       That's a lot of letters in a short time. Please wait a few minutes and try again.
     </p>
 

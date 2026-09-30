@@ -28,7 +28,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     resendApiKey: '',
     contactTo: '',
-    contactFrom: 'Calling card <hello@asafwat.dev>',
+    contactFrom: 'asafwat.dev <hello@asafwat.dev>',
     contactTransport: 'resend',
     public: {
       builtAt: new Date().toISOString(),

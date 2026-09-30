@@ -3,7 +3,7 @@
     <h1 class="text-3xl font-black md:text-4xl">Write Abdo a letter</h1>
     <p class="mt-3 max-w-xl">A role, a question, an FFXIV raid invite, or just hello. It goes straight to my inbox.</p>
     <div class="mt-8">
-      <CallingCardForm />
+      <LetterForm />
     </div>
   </section>
 </template>
