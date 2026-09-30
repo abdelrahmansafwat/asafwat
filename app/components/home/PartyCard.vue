@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-  import { useEventListener, useIdle, useTimeoutFn } from '@vueuse/core'
+  import { useEventListener, useIdle, useMediaQuery, useTimeoutFn } from '@vueuse/core'
   import { profile, intro, languages, likes } from '~/data/site'
 
   const line = ref(intro)
@@ -48,16 +48,16 @@
     '/dance': ['egg-dance', 'Abdo dances gleefully.'],
     '/cheer': ['egg-jump', 'Abdo cheers you on!'],
   }
-  const hints = [
-    'Psst... old games had cheat codes. Some habits die hard.',
-    'FFXIV players: this box understands emotes. Try /wave.',
+  const keyboard = useMediaQuery('(hover: hover) and (pointer: fine)')
+  const hints = computed(() => [
+    ...(keyboard.value ? ['Psst... old games had cheat codes. Some habits die hard.', 'FFXIV players: this box understands emotes. Try /wave.'] : []),
     'You can poke me, you know.',
-  ]
+  ])
   let hint = 0
   const { idle } = useIdle(20_000)
   watch(idle, (isIdle) => {
     if (!isIdle || line.value !== greeting.value) return
-    line.value = hints[hint % hints.length]!
+    line.value = hints.value[hint % hints.value.length]!
     hint++
   })
 

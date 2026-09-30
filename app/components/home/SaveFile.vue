@@ -19,7 +19,7 @@
           {{ y }}
         </button>
       </div>
-      <div class="mt-4 overflow-x-auto pb-2">
+      <div ref="scroller" class="mt-4 overflow-x-auto pb-2">
         <div class="heat" role="img" :aria-label="`${yearTotal} contributions in ${year}`">
           <span
             v-for="(d, i) in cells"
@@ -60,6 +60,13 @@
     const offset = new Date(`${year.value}-01-01T00:00:00Z`).getUTCDay()
     return [...Array<null>(offset).fill(null), ...yearDays.value]
   })
+
+  const scroller = ref<HTMLElement>()
+  function showRecent() {
+    if (scroller.value) scroller.value.scrollLeft = year.value === years.value.at(-1) ? scroller.value.scrollWidth : 0
+  }
+  onMounted(showRecent)
+  watch(year, showRecent, { flush: 'post' })
 
   function tip(d: Day) {
     const base = `${d.count} on ${d.date}`

@@ -114,6 +114,14 @@ body {
 .rpg-menu a:hover::before,
 .rpg-menu a:focus-visible::before,
 .rpg-menu a.router-link-exact-active:not([href*="#"])::before { opacity: 1; }
+@media (max-width: 767px) {
+  .rpg-menu { mask-image: linear-gradient(to right, #000 80%, transparent); }
+  .rpg-menu a { padding-block: 0.6rem; }
+  .rpg-menu li:last-child { padding-right: 2rem; }
+}
+@media not ((hover: hover) and (pointer: fine)) {
+  .keyboard-only { display: none; }
+}
 
 .portrait {
   width: 180px;

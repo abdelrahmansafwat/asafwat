@@ -83,7 +83,7 @@ export const now = [
   { label: 'Watching', value: 'The Falcon and the Winter Soldier' },
 ]
 
-export const games: { name: string; note?: string }[] = [
+export const games: { name: string; note?: string; keyboardNote?: string }[] = [
   { name: 'Persona', note: 'Persona 5 Royal is the GOAT, my favorite game of all time.' },
   { name: 'Pokémon', note: "Pokémon FireRed was my first real video game. It's what got me so into gaming, and that led me to a career in tech." },
   { name: 'The Legend of Zelda' },
@@ -92,7 +92,7 @@ export const games: { name: string; note?: string }[] = [
   { name: 'Mega Man Battle Network' },
   { name: 'Mega Man Star Force' },
   { name: 'Kingdom Hearts' },
-  { name: 'Final Fantasy', note: "Samurai main in FFXIV. I'm Reddu Beta on Phoenix, so add me if you're there! Try /dance." },
+  { name: 'Final Fantasy', note: "Samurai main in FFXIV. I'm Reddu Beta on Phoenix, so add me if you're there!", keyboardNote: 'Try /dance.' },
   { name: 'Story of Seasons' },
   { name: 'Fire Emblem' },
   { name: 'Octopath Traveler' },

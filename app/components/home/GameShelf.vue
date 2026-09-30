@@ -8,7 +8,7 @@
           <span class="cart-label">{{ g.name }}</span>
           <template v-if="g.note">
             <span class="cart-mark" aria-hidden="true">!</span>
-            <span class="cart-note">{{ g.note }}</span>
+            <span class="cart-note">{{ g.note }}<span v-if="g.keyboardNote" class="keyboard-only"> {{ g.keyboardNote }}</span></span>
           </template>
         </li>
       </ul>
