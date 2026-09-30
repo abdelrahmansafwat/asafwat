@@ -6,6 +6,7 @@ export const profile = {
   avatar: '/mii.webp',
   cvHref: '/cv.pdf',
   linkedin: 'https://www.linkedin.com/in/abdelrahman-safwat/',
+  github: { username: 'abdelrahmansafwat', since: '2023-01-01' },
 }
 
 export const intro =

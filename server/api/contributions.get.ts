@@ -1,9 +1,10 @@
-const user = 'abdelrahmansafwat'
-const start = '2023-01-01'
+import { profile } from '~/data/site'
+
+const { username, since: start } = profile.github
 const day = 86_400_000
 
 async function fetchYear(year: number) {
-  const html = await $fetch<string>(`https://github.com/users/${user}/contributions?from=${year}-01-01&to=${year}-12-31`, { responseType: 'text' })
+  const html = await $fetch<string>(`https://github.com/users/${username}/contributions?from=${year}-01-01&to=${year}-12-31`, { responseType: 'text' })
   const tips = new Map<string, string>()
   for (const m of html.matchAll(/<tool-tip[^>]*for="([^"]+)"[^>]*>([^<]+)<\/tool-tip>/g)) tips.set(m[1]!, m[2]!)
   const days = new Map<string, { count: number; level: number }>()

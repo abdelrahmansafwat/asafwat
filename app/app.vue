@@ -5,6 +5,8 @@
 </template>
 
 <script setup lang="ts">
+  import { profile } from '~/data/site'
+
   const { data: sun } = await useHomeSun()
   const route = useRoute()
   const url = computed(() => `https://asafwat.dev${route.path}`)
@@ -28,7 +30,7 @@
           jobTitle: 'Full Stack Developer',
           url: 'https://asafwat.dev',
           image: 'https://asafwat.dev/mii.webp',
-          sameAs: ['https://www.linkedin.com/in/abdelrahman-safwat/', 'https://github.com/abdelrahmansafwat'],
+          sameAs: [profile.linkedin, `https://github.com/${profile.github.username}`],
           knowsAbout: ['Vue', 'React', 'NestJS', 'TypeScript', 'Node.js'],
         }),
       },

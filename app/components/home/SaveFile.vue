@@ -4,7 +4,7 @@
       <h2 class="panel-title">Save file</h2>
       <p class="mt-2 text-2xl font-black">{{ total.toLocaleString('en-US') }} contributions · {{ active }} days played</p>
       <p class="text-sm text-[var(--c-muted)]">
-        GitHub contributions since 2023, including private work repositories.
+        GitHub contributions since {{ profile.github.since.slice(0, 4) }}, including private work repositories.
       </p>
       <div class="mt-4 flex flex-wrap gap-2" role="group" aria-label="Year">
         <button
@@ -36,8 +36,10 @@
 </template>
 
 <script setup lang="ts">
+  import { profile } from '~/data/site'
+
   type Day = { date: string; count: number; level: number }
-  const { data } = await useFetch('/api/contributions', { default: () => ({ start: '2023-01-01', counts: [] as number[], levels: '' }) })
+  const { data } = await useFetch('/api/contributions', { default: () => ({ start: profile.github.since, counts: [] as number[], levels: '' }) })
   const days = computed<Day[]>(() => {
     const start = new Date(`${data.value.start}T00:00:00Z`).getTime()
     return data.value.counts.map((count, i) => ({
