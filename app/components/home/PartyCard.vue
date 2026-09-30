@@ -74,6 +74,7 @@
     if (e.key.length > 1 && !e.key.startsWith('Arrow')) return
     const target = e.target as HTMLElement | null
     if (target && ['INPUT', 'TEXTAREA'].includes(target.tagName)) return
+    if (e.key === '/') e.preventDefault()
     if (e.key.length === 1) {
       typed = (typed + e.key.toLowerCase()).slice(-10)
       const emote = Object.keys(emotes).find((name) => typed.endsWith(name))
