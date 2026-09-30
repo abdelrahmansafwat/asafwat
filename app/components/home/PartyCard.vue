@@ -139,6 +139,7 @@
     night.value = !!sun.value && isAfterDark(sun.value)
     const hour = Number(new Intl.DateTimeFormat('en-GB', { timeZone: profile.home.timeZone, hour: '2-digit', hourCycle: 'h23' }).format(new Date()))
     if (night.value && hour < 12) hello.value = 'Hi, night owl!'
+    else if (hour < 9) hello.value = 'Yaaawn... Good morning!'
     else if (hour < 12) hello.value = 'Good morning!'
     else if (hour < 17 && !night.value) hello.value = 'Good afternoon!'
     else hello.value = 'Good evening!'
