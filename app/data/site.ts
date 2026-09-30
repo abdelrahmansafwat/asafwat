@@ -92,7 +92,7 @@ export const games: { name: string; note?: string }[] = [
   { name: 'Mega Man Battle Network' },
   { name: 'Mega Man Star Force' },
   { name: 'Kingdom Hearts' },
-  { name: 'Final Fantasy', note: "Samurai main in FFXIV. I'm Reddu Beta on Phoenix, so add me if you're there!" },
+  { name: 'Final Fantasy', note: "Samurai main in FFXIV. I'm Reddu Beta on Phoenix, so add me if you're there! Try /dance." },
   { name: 'Story of Seasons' },
   { name: 'Fire Emblem' },
   { name: 'Octopath Traveler' },
@@ -101,5 +101,5 @@ export const games: { name: string; note?: string }[] = [
   { name: 'Ace Attorney', note: 'OBJECTION!!!' },
   { name: 'Professor Layton', note: 'A true gentleman leaves no puzzle unsolved.' },
   { name: 'Xenoblade Chronicles' },
-  { name: 'Yu-Gi-Oh!', note: 'I main a HERO deck.' },
+  { name: 'Yu-Gi-Oh!', note: 'I main a HERO deck. Konami made it, so you might know a certain code.' },
 ]

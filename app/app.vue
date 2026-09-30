@@ -51,7 +51,7 @@
 
   onMounted(() => {
     console.log(
-      '%cOh, a fellow developer!%c\nThe source is on GitHub: https://github.com/%s/asafwat\nAnd letters are always welcome: https://asafwat.dev/contact',
+      `%cOh, a fellow developer!%c\nThe source is on GitHub: https://github.com/%s/asafwat\nAnd letters are always welcome: https://asafwat.dev/contact\n\nSince you're here: ↑↑↓↓←→←→BA, /wave, /dance, /cheer, and poke the Mii ten times.`,
       'font-size: 16px; font-weight: bold; color: #1F9E96',
       'font-size: 13px',
       profile.github.username,
