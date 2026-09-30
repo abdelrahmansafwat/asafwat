@@ -58,7 +58,8 @@
   const menu = ref<HTMLElement>()
   const menuOpen = ref(false)
   let longPressed = false
-  onLongPress(portrait, () => {
+  onLongPress(portrait, (e) => {
+    if (e.pointerType !== 'touch') return
     longPressed = true
     menuOpen.value = true
   }, { delay: 500 })
@@ -70,9 +71,10 @@
   }
   const keyboard = useMediaQuery('(hover: hover) and (pointer: fine)')
   const hints = computed(() => [
-    ...(keyboard.value ? ['Psst... old games had cheat codes. Some habits die hard.', 'FFXIV players: this box understands emotes. Try /wave.'] : []),
+    ...(keyboard.value
+      ? ['Psst... old games had cheat codes. Some habits die hard.', 'FFXIV players: this box understands emotes. Try /wave.']
+      : ['Hold me down for a second. I know a few emotes.']),
     'You can poke me, you know.',
-    'Hold me down for a second. I know a few emotes.',
   ])
   let hint = 0
   const { idle } = useIdle(20_000)
