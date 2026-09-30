@@ -21,9 +21,9 @@
         </dl>
       </div>
     </div>
-    <DialogueBox class="mt-5" :text="line" @next="line = intro" />
+    <DialogueBox class="mt-5" :text="line" @next="line = greeting" />
     <div class="mt-6 flex flex-wrap gap-3">
-      <a :href="profile.cvHref" class="btn" download>Download CV</a>
+      <a :href="profile.cvHref" class="btn" download @click="giveCv">Download CV</a>
       <NuxtLink to="/contact" class="btn btn-teal">Write me a letter</NuxtLink>
       <a :href="profile.linkedin" class="btn" target="_blank" rel="noopener">LinkedIn</a>
     </div>
@@ -31,16 +31,24 @@
 </template>
 
 <script setup lang="ts">
-  import { useEventListener } from '@vueuse/core'
+  import { useEventListener, useTimeoutFn } from '@vueuse/core'
   import { profile, intro, languages, likes } from '~/data/site'
 
   const line = ref(intro)
   const night = ref(false)
+  const greeting = computed(() => (night.value ? `${intro} It's late here, so I'm probably deep in a JRPG right now.` : intro))
   const { data: sun } = await useHomeSun()
   const egg = ref('')
   const pokes = ref(0)
   const konami = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a']
   let progress = 0
+  let typed = ''
+  const emotes: Record<string, [string, string]> = {
+    '/wave': ['egg-wiggle', 'Abdo waves at you.'],
+    '/dance': ['egg-dance', 'Abdo dances gleefully.'],
+    '/bow': ['egg-bow', 'Abdo bows courteously to you.'],
+  }
+  const { start: stopEvolving } = useTimeoutFn(() => { line.value = '...Huh? Abdo stopped evolving!' }, 2200, { immediate: false })
 
   function play(anim: string, text: string) {
     egg.value = ''
@@ -48,15 +56,32 @@
     line.value = text
   }
 
+  function giveCv() {
+    play('', "It's dangerous to go alone! Take this.")
+  }
+
   function poke() {
     pokes.value++
-    if (pokes.value % 5 === 0) play('egg-wiggle', 'Hey, that tickles! Five pokes? You must really like clicking things.')
+    if (pokes.value % 10 === 0) {
+      play('egg-evolve', 'What? Abdo is evolving!')
+      stopEvolving()
+    } else if (pokes.value % 5 === 0) {
+      play('egg-wiggle', 'Hey, that tickles! Five pokes? You must really like clicking things.')
+    }
   }
 
   function onKey(e: KeyboardEvent) {
     if (e.key.length > 1 && !e.key.startsWith('Arrow')) return
     const target = e.target as HTMLElement | null
     if (target && ['INPUT', 'TEXTAREA'].includes(target.tagName)) return
+    if (e.key.length === 1) {
+      typed = (typed + e.key.toLowerCase()).slice(-10)
+      const emote = Object.keys(emotes).find((name) => typed.endsWith(name))
+      if (emote) {
+        typed = ''
+        play(...emotes[emote]!)
+      }
+    }
     if (e.key.toLowerCase() === konami[progress]?.toLowerCase()) progress++
     else progress = e.key === 'ArrowUp' ? Math.min(progress, 2) || 1 : 0
     if (progress === konami.length) {
@@ -67,6 +92,7 @@
 
   onMounted(() => {
     night.value = !!sun.value && isAfterDark(sun.value)
+    line.value = greeting.value
   })
   useEventListener('keydown', onKey)
 </script>

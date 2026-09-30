@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+  import { useDocumentVisibility } from '@vueuse/core'
   import { profile } from '~/data/site'
 
   const { data: sun } = await useHomeSun()
@@ -35,5 +36,25 @@
         }),
       },
     ],
+  })
+
+  const visibility = useDocumentVisibility()
+  let title = ''
+  watch(visibility, (state) => {
+    if (state === 'hidden') {
+      title = document.title
+      document.title = 'Hey! Listen!'
+    } else if (title) {
+      document.title = title
+    }
+  })
+
+  onMounted(() => {
+    console.log(
+      '%cOh, a fellow developer!%c\nThe source is on GitHub: https://github.com/%s/asafwat\nAnd letters are always welcome: https://asafwat.dev/contact',
+      'font-size: 16px; font-weight: bold; color: #1F9E96',
+      'font-size: 13px',
+      profile.github.username,
+    )
   })
 </script>

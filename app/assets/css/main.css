@@ -277,6 +277,12 @@ body {
 @keyframes egg-jump { 40% { transform: translateY(-18px); } }
 .egg-wiggle { animation: egg-wiggle 0.4s ease-in-out 2; }
 @keyframes egg-wiggle { 25% { transform: rotate(-6deg); } 75% { transform: rotate(6deg); } }
+.egg-dance { animation: egg-dance 0.8s ease-in-out 2; }
+@keyframes egg-dance { 25% { transform: translateX(-10px) rotate(-8deg); } 50% { transform: translateY(-12px); } 75% { transform: translateX(10px) rotate(8deg); } }
+.egg-bow { animation: egg-bow 1.2s ease-in-out; }
+@keyframes egg-bow { 30%, 70% { transform: translateY(10px) scaleY(0.92); } }
+.egg-evolve { animation: egg-evolve 0.35s steps(1) 6; }
+@keyframes egg-evolve { 50% { filter: brightness(0) invert(1); } }
 .objection {
   position: fixed;
   left: 50%;
