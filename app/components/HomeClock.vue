@@ -1,5 +1,5 @@
 <template>
-  <time class="pixel" :title="`Local time in ${profile.home.name}`">{{ time }}</time>
+  <time class="font-bold tabular-nums" :title="`Local time in ${profile.home.name}`">{{ time }}</time>
 </template>
 
 <script setup lang="ts">
