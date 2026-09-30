@@ -134,7 +134,23 @@ body {
   background: var(--c-panel);
   cursor: pointer;
 }
-.portrait img { width: 100%; height: 100%; object-fit: cover; }
+.portrait img { width: 100%; height: 100%; object-fit: cover; -webkit-touch-callout: none; user-select: none; }
+.portrait { -webkit-user-select: none; user-select: none; }
+.emote-menu {
+  position: absolute;
+  z-index: 10;
+  top: calc(100% + 0.75rem);
+  left: 50%;
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.5rem;
+  background: #2A2233;
+  border: 3px solid #FFF8EC;
+  border-radius: 14px;
+  box-shadow: 0 0 0 3px #2A2233;
+  transform: translateX(-50%);
+}
+.emote-menu button { text-transform: capitalize; }
 
 .dialogue {
   position: relative;

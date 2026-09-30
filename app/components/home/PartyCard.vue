@@ -1,9 +1,14 @@
 <template>
   <section id="party" class="mx-auto max-w-5xl scroll-mt-28 px-4 pt-10">
     <div class="panel grid gap-6 p-6 md:grid-cols-[auto_1fr] md:items-center md:p-8">
-      <button type="button" class="portrait" :class="egg" @click="poke" @animationend="egg = ''">
-        <img :src="profile.avatar" alt="Poke Abdo's Mii: red glasses and a teal hoodie" width="180" height="180" fetchpriority="high">
-      </button>
+      <div class="relative justify-self-start">
+        <button ref="portrait" type="button" class="portrait" :class="egg" @click="poke" @contextmenu.prevent @animationend="egg = ''">
+          <img :src="profile.avatar" alt="Poke Abdo's Mii: red glasses and a teal hoodie" width="180" height="180" fetchpriority="high" draggable="false">
+        </button>
+        <div v-if="menuOpen" ref="menu" class="emote-menu" role="group" aria-label="Emotes">
+          <button v-for="(_, name) in emotes" :key="name" type="button" class="btn !px-3 !py-1 !text-sm" @click="emote(name)">{{ name.slice(1) }}</button>
+        </div>
+      </div>
       <div>
         <p class="panel-title">Party member</p>
         <h1 class="mt-1 text-3xl font-black leading-tight md:text-5xl">{{ profile.name }}</h1>
@@ -31,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-  import { useEventListener, useIdle, useMediaQuery, useTimeoutFn } from '@vueuse/core'
+  import { onClickOutside, onLongPress, useEventListener, useIdle, useMediaQuery, useTimeoutFn } from '@vueuse/core'
   import { profile, intro, languages, likes } from '~/data/site'
 
   const line = ref(intro)
@@ -48,10 +53,26 @@
     '/dance': ['egg-dance', 'Abdo dances gleefully.'],
     '/cheer': ['egg-jump', 'Abdo cheers you on!'],
   }
+
+  const portrait = ref<HTMLElement>()
+  const menu = ref<HTMLElement>()
+  const menuOpen = ref(false)
+  let longPressed = false
+  onLongPress(portrait, () => {
+    longPressed = true
+    menuOpen.value = true
+  }, { delay: 500 })
+  onClickOutside(menu, () => { menuOpen.value = false }, { ignore: [portrait] })
+
+  function emote(name: string) {
+    menuOpen.value = false
+    play(...emotes[name]!)
+  }
   const keyboard = useMediaQuery('(hover: hover) and (pointer: fine)')
   const hints = computed(() => [
     ...(keyboard.value ? ['Psst... old games had cheat codes. Some habits die hard.', 'FFXIV players: this box understands emotes. Try /wave.'] : []),
     'You can poke me, you know.',
+    'Hold me down for a second. I know a few emotes.',
   ])
   let hint = 0
   const { idle } = useIdle(20_000)
@@ -74,6 +95,10 @@
   }
 
   function poke() {
+    if (longPressed) {
+      longPressed = false
+      return
+    }
     pokes.value++
     if (pokes.value % 10 === 0) {
       play('egg-evolve', 'What? Abdo is evolving!')
