@@ -12,6 +12,7 @@
       <div>
         <p class="panel-title text-center md:text-left">Party member</p>
         <h1 class="mt-1 text-center text-3xl font-black leading-tight md:text-left md:text-5xl">{{ profile.name }}</h1>
+        <DialogueBox class="mt-4 md:hidden" :text="line" @next="line = greeting" />
         <dl class="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-lg">
           <dt class="pixel text-[var(--c-muted)]">CLASS</dt>
           <dd>{{ profile.role }}</dd>
@@ -26,7 +27,7 @@
         </dl>
       </div>
     </div>
-    <DialogueBox class="mt-5" :text="line" @next="line = greeting" />
+    <DialogueBox class="mt-5 hidden md:block" :text="line" @next="line = greeting" />
     <div class="mt-6 flex flex-wrap gap-3">
       <a :href="profile.cvHref" class="btn" download @click="giveCv">Download CV</a>
       <NuxtLink to="/contact" class="btn btn-teal">Write me a letter</NuxtLink>
