@@ -49,6 +49,7 @@ export const experience = [
       'Designed and built the advanced filtering and change history systems used across the admin platform.',
       'Made API permissions modular, worked on Entra ID and Active Directory sync, built the management side of network and security settings, and wrote parts of the Go endpoint agent.',
       'Built shared frontend foundations: FormKit plugins, a shared UI package and a generated TypeScript API client.',
+      'Worked directly with the product owner on requirements and edge cases.',
     ],
   },
   {
@@ -57,8 +58,8 @@ export const experience = [
     period: 'May 2021 to Oct 2023',
     points: [
       'A software agency in Kuwait, building web applications for Gulf businesses.',
-      'Built the complete backend for an Uber-style handyman app on my own, from start to finish.',
-      'Worked on a Gulf-wide restaurant booking dashboard and a Gulf job board as part of larger teams.',
+      'Sole backend developer for an Uber-style handyman app, built from start to finish.',
+      'Contributed to a Gulf-wide restaurant booking platform and a Gulf job board.',
     ],
   },
   {
