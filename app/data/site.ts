@@ -45,9 +45,10 @@ export const experience = [
     company: 'Jimber',
     period: 'Nov 2023 to present',
     points: [
-      'Multi-tenant SaaS security platform.',
-      'Backend in NestJS, Prisma and MySQL. Frontend in Vue, TypeScript and Tailwind.',
-      'Playwright end-to-end tests, Docker and GitHub Actions.',
+      "A Belgian security start-up whose SASE platform gives 1,000+ users secure access to their company's network and apps.",
+      'Designed and built the advanced filtering and change history systems used across the admin platform.',
+      'Made API permissions modular, worked on Entra ID and Active Directory sync, built the management side of network and security settings, and wrote parts of the Go endpoint agent.',
+      'Built shared frontend foundations: FormKit plugins, a shared UI package and a generated TypeScript API client.',
     ],
   },
   {
@@ -55,15 +56,19 @@ export const experience = [
     company: 'Digital Roots GTC',
     period: 'May 2021 to Oct 2023',
     points: [
-      'Client web applications end to end at an agency, from the React frontend to the Node backend.',
-      'Deployed and maintained the apps on GCP and Azure.',
+      'A software agency in Kuwait, building web applications for Gulf businesses.',
+      'Built the complete backend for an Uber-style handyman app on my own, from start to finish.',
+      'Worked on a Gulf-wide restaurant booking dashboard and a Gulf job board as part of larger teams.',
     ],
   },
   {
     role: 'Full Stack Developer',
     company: 'Freelance',
-    period: 'Apr 2020 to May 2021',
-    points: ['Web applications for clients in React, Node and Python, from scoping through to delivery.'],
+    period: 'Apr 2020 to Feb 2023',
+    points: [
+      "Built a university's official grades app, which reached 50,000+ downloads on Google Play.",
+      'Built a post-surgery patient follow-up system, a flight booking platform and university management dashboards.',
+    ],
   },
   {
     role: 'Teaching Assistant and Programming Instructor',
