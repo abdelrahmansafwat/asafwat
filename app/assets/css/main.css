@@ -214,17 +214,34 @@ body {
 .has-note { position: relative; cursor: help; }
 .cart-mark {
   position: absolute;
-  top: -0.7rem;
-  right: -0.5rem;
+  top: -0.75rem;
+  right: -0.55rem;
   display: grid;
   place-items: center;
-  width: 1.6rem;
-  height: 1.6rem;
+  width: 1.7rem;
+  height: 1.7rem;
   font-family: var(--font-pixel);
-  color: #2A2233;
-  background: #FFD23F;
+  font-size: 0.95rem;
+  color: #FFF8EC;
+  text-shadow: 2px 2px 0 #8A4B08;
+  background:
+    radial-gradient(circle, #8A4B08 0 1.5px, transparent 2px) 3px 3px / 5px 5px no-repeat,
+    radial-gradient(circle, #8A4B08 0 1.5px, transparent 2px) calc(100% - 3px) 3px / 5px 5px no-repeat,
+    radial-gradient(circle, #8A4B08 0 1.5px, transparent 2px) 3px calc(100% - 3px) / 5px 5px no-repeat,
+    radial-gradient(circle, #8A4B08 0 1.5px, transparent 2px) calc(100% - 3px) calc(100% - 3px) / 5px 5px no-repeat,
+    #F5A623;
   border: 2px solid #2A2233;
-  border-radius: 50%;
+  border-radius: 3px;
+  box-shadow: inset -2px -2px 0 #C46F0E, inset 2px 2px 0 #FFD27A;
+}
+.has-note:hover .cart-mark,
+.has-note:focus .cart-mark { animation: block-hit 0.25s steps(3); }
+@keyframes block-hit {
+  50% { transform: translateY(-5px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .has-note:hover .cart-mark,
+  .has-note:focus .cart-mark { animation: none; }
 }
 .cart-note {
   position: absolute;
