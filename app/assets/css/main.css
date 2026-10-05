@@ -5,11 +5,27 @@
 @import "@fontsource/pixelify-sans/400.css";
 @import "@fontsource/pixelify-sans/700.css";
 
+/* Silkscreen for digits only: Pixelify's 3 and 8 look alike at small sizes */
+@font-face {
+  font-family: "Pixel Digits";
+  src: url("../../../node_modules/@fontsource/silkscreen/files/silkscreen-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  unicode-range: U+0030-0039;
+  size-adjust: 90%;
+}
+@font-face {
+  font-family: "Pixel Digits";
+  src: url("../../../node_modules/@fontsource/silkscreen/files/silkscreen-latin-700-normal.woff2") format("woff2");
+  font-weight: 700;
+  unicode-range: U+0030-0039;
+  size-adjust: 90%;
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --font-sans: "Nunito", system-ui, sans-serif;
-  --font-pixel: "Pixelify Sans", ui-monospace, monospace;
+  --font-pixel: "Pixel Digits", "Pixelify Sans", ui-monospace, monospace;
 }
 
 :root {
