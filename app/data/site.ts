@@ -67,8 +67,8 @@ export const experience = [
     company: 'Freelance',
     period: 'Apr 2020 to Feb 2023',
     points: [
-      "Built a university's official grades app, which reached 50,000+ downloads on Google Play.",
-      'Built a post-surgery patient follow-up system, a flight booking platform and university management dashboards.',
+      'Built web and mobile apps for a range of clients, handling each project from scoping to delivery.',
+      "Highlights include a university's official grades app with 50,000+ downloads on Google Play, a post-surgery patient follow-up system and a flight booking platform.",
     ],
   },
   {
